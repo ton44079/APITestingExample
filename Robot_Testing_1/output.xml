@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot rpa="false" generated="20190925 15:46:18.670" generator="Robot 3.1.2 (Python 2.7.15 on darwin)">
+<robot rpa="false" generated="20190925 15:58:09.425" generator="Robot 3.1.2 (Python 2.7.15 on darwin)">
 <suite source="/Users/danai.t/Desktop/Training/Automation/APITesting/Robot_Testing_1/case1.robot" id="s1" name="Case1">
 <test id="s1-t1" name="Get Comments">
 <kw name="Create Session" library="RequestsLibrary">
@@ -8,8 +8,8 @@
 <arg>api</arg>
 <arg>https://jsonplaceholder.typicode.com</arg>
 </arguments>
-<msg timestamp="20190925 15:46:18.770" level="INFO">Creating Session using : alias=api, url=https://jsonplaceholder.typicode.com, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" endtime="20190925 15:46:18.770" starttime="20190925 15:46:18.770"></status>
+<msg timestamp="20190925 15:58:09.523" level="INFO">Creating Session using : alias=api, url=https://jsonplaceholder.typicode.com, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20190925 15:58:09.524" starttime="20190925 15:58:09.523"></status>
 </kw>
 <kw name="Get Request" library="RequestsLibrary">
 <doc>Send a GET request on the session object found using the
@@ -21,11 +21,11 @@ given `alias`</doc>
 <assign>
 <var>${response}</var>
 </assign>
-<msg timestamp="20190925 15:46:18.939" level="INFO">Get Request using : alias=api, uri=/comments, headers=None json=None</msg>
-<msg timestamp="20190925 15:46:18.939" level="INFO">/usr/local/lib/python2.7/site-packages/urllib3/connectionpool.py:851: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+<msg timestamp="20190925 15:58:09.711" level="INFO">Get Request using : alias=api, uri=/comments, headers=None json=None</msg>
+<msg timestamp="20190925 15:58:09.711" level="INFO">/usr/local/lib/python2.7/site-packages/urllib3/connectionpool.py:851: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
   InsecureRequestWarning)</msg>
-<msg timestamp="20190925 15:46:18.939" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20190925 15:46:18.939" starttime="20190925 15:46:18.770"></status>
+<msg timestamp="20190925 15:58:09.711" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190925 15:58:09.711" starttime="20190925 15:58:09.524"></status>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <doc>Fails if the given objects are unequal.</doc>
@@ -33,7 +33,7 @@ given `alias`</doc>
 <arg>${response.status_code}</arg>
 <arg>${200}</arg>
 </arguments>
-<status status="PASS" endtime="20190925 15:46:18.940" starttime="20190925 15:46:18.940"></status>
+<status status="PASS" endtime="20190925 15:58:09.712" starttime="20190925 15:58:09.711"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -41,14 +41,87 @@ given `alias`</doc>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20190925 15:46:18.941" level="INFO">Argument types are:
+<msg timestamp="20190925 15:58:09.713" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" endtime="20190925 15:46:18.941" starttime="20190925 15:46:18.940"></status>
+<status status="PASS" endtime="20190925 15:58:09.713" starttime="20190925 15:58:09.712"></status>
 </kw>
-<status status="PASS" endtime="20190925 15:46:18.941" critical="yes" starttime="20190925 15:46:18.769"></status>
+<kw name="Length Should Be" library="BuiltIn">
+<doc>Verifies that the length of the given item is correct.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+<arg>${500}</arg>
+</arguments>
+<msg timestamp="20190925 15:58:09.717" level="INFO">Length is 500</msg>
+<status status="PASS" endtime="20190925 15:58:09.717" starttime="20190925 15:58:09.713"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${response.json()[0]['id']}</arg>
+<arg>${1}</arg>
+</arguments>
+<status status="PASS" endtime="20190925 15:58:09.721" starttime="20190925 15:58:09.718"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${response.json()[0]['name']}</arg>
+<arg>id labore ex et quam laborum</arg>
+</arguments>
+<status status="PASS" endtime="20190925 15:58:09.725" starttime="20190925 15:58:09.721"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${response.json()[0]['email']}</arg>
+<arg>Eliseo@gardner.biz</arg>
+</arguments>
+<status status="PASS" endtime="20190925 15:58:09.728" starttime="20190925 15:58:09.725"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${response.json()[0]['body']}</arg>
+<arg>laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium</arg>
+</arguments>
+<status status="PASS" endtime="20190925 15:58:09.731" starttime="20190925 15:58:09.728"></status>
+</kw>
+<kw name="Should Contain Match" library="Collections">
+<doc>Fails if ``pattern`` is not found in ``list``.</doc>
+<arguments>
+<arg>${response.json()[0]}</arg>
+<arg>id</arg>
+</arguments>
+<status status="PASS" endtime="20190925 15:58:09.734" starttime="20190925 15:58:09.731"></status>
+</kw>
+<kw name="Should Contain Match" library="Collections">
+<doc>Fails if ``pattern`` is not found in ``list``.</doc>
+<arguments>
+<arg>${response.json()[0]}</arg>
+<arg>name</arg>
+</arguments>
+<status status="PASS" endtime="20190925 15:58:09.737" starttime="20190925 15:58:09.734"></status>
+</kw>
+<kw name="Should Contain Match" library="Collections">
+<doc>Fails if ``pattern`` is not found in ``list``.</doc>
+<arguments>
+<arg>${response.json()[0]}</arg>
+<arg>email</arg>
+</arguments>
+<status status="PASS" endtime="20190925 15:58:09.740" starttime="20190925 15:58:09.737"></status>
+</kw>
+<kw name="Should Contain Match" library="Collections">
+<doc>Fails if ``pattern`` is not found in ``list``.</doc>
+<arguments>
+<arg>${response.json()[0]}</arg>
+<arg>body</arg>
+</arguments>
+<status status="PASS" endtime="20190925 15:58:09.743" starttime="20190925 15:58:09.740"></status>
+</kw>
+<status status="PASS" endtime="20190925 15:58:09.743" critical="yes" starttime="20190925 15:58:09.523"></status>
 </test>
-<status status="PASS" endtime="20190925 15:46:18.942" starttime="20190925 15:46:18.671"></status>
+<status status="PASS" endtime="20190925 15:58:09.743" starttime="20190925 15:58:09.427"></status>
 </suite>
 <statistics>
 <total>
